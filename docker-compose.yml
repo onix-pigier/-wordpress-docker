@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Service MySQL (base de données)
+  db:
+    image: mysql:5.7 #image sql à la version .7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: VotreMotDePasseSecurise123!  # mot de pass Admin
+      MYSQL_DATABASE: devops  # nom de la bd
+      MYSQL_USER: onix # nom de l'utilisateur
+      MYSQL_PASSWORD: MotDePasseComplexe456!  # mot de passe SQL Doit correspondre à WORDPRESS_DB_PASSWORD
+
+  # Service WordPress
+  wordpress:
+    depends_on:
+      - db # Attend que la DB soit prête
+    image: wordpress:latest # image wprdpress
+    ports:
+      - "8000:80" # # Port exposé : 8000 (host) et  80 (conteneur)
+    environment:
+      WORDPRESS_DB_HOST: db # Nom du service MySQL
+      WORDPRESS_DB_USER: onix # nom de l'utilisaetur 
+      WORDPRESS_DB_PASSWORD: MotDePasseComplexe456!  # Identique à MYSQL_PASSWORD
+      WORDPRESS_DB_NAME: devops  # Doit correspondre exactement à MYSQL_DATABASE
+
+volumes:
+  db_data:
