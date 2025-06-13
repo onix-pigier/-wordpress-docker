@@ -61,7 +61,8 @@ docker compose down -v
 ![WordPress Accueil](images/wordpress_Accueil.png)
 
 ###  Conteneurs Docker actifs
-![Conteneurs Docker](images/docker_ps.png) et autres images restantes
+![Conteneurs Docker](images/docker_ps.png)
+  et autres images restantes : 
 ![Autres images](images\containers.png)
 ![Autres images](images\image.png)
 
